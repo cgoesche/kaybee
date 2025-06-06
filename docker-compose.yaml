@@ -1,0 +1,20 @@
+services:
+  kaybee:
+    container_name: kaybee
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - "sphinx-autobuild"
+      - "--port"
+      - "8080"
+      - "--host"
+      - "0.0.0.0"
+      - "docs/source/"
+      - "docs/build/"
+    network_mode: bridge
+    ports:
+      - 8443:8080
+    volumes:
+      - .:/kaybee:ro
+    restart: on-failure
